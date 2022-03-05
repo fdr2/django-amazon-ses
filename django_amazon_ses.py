@@ -49,6 +49,9 @@ class EmailBackend(BaseEmailBackend):
         self.configuration_set_name = getattr(
             settings, "AWS_SES_CONFIGURATION_SET_NAME", None
         )
+        source_arn = getattr(
+            settings, "AWS_SOURCE_ARN", None
+        )
 
         # Override all previous configuration if settings provided
         # through the constructor
@@ -61,6 +64,7 @@ class EmailBackend(BaseEmailBackend):
             aws_access_key_id=access_key_id,
             aws_secret_access_key=secret_access_key,
             region_name=region_name,
+            source_arn=source_arn,
         )
 
     def send_messages(self, email_messages):

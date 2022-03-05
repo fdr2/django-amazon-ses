@@ -1,0 +1,16 @@
+version: '3'
+networks:
+  testing:
+services:
+  test-runner:
+    image: ${USER}/${DJANGO_MODULE:-django-amazon-ses-test}
+    build:
+        context: .
+        dockerfile: Dockerfile
+    platform: linux/amd64
+    volumes:
+      - .:/${DJANGO_MODULE:-django-module}
+    environment:
+      - DJANGO_MODULE=${DJANGO_MODULE:-django-module}
+    networks:
+      - testing

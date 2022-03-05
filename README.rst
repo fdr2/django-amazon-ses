@@ -181,3 +181,10 @@ The test suite execution process is managed by tox and takes care to mock out th
 .. code:: bash
 
    $ tox
+
+Tox does not play nice with Apple M1 Silicon. Use Docker to test from a container instead of the local machine.
+
+..code:: bash
+
+  $ docker compose up --build
+
