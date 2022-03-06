@@ -121,6 +121,9 @@ class EmailBackend(BaseEmailBackend):
             if self.configuration_set_name is not None:
                 kwargs["ConfigurationSetName"] = self.configuration_set_name
 
+            if self.source_arn is not None:
+                kwargs["SourceArn"] = self.source_arn
+
             result = self.conn.send_raw_email(**kwargs)
             message_id = result["MessageId"]
             post_send.send(self.__class__, message=email_message, message_id=message_id)
